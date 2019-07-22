@@ -34,8 +34,8 @@ fi
 if [ $osType = "DEB" ]; then
     echo -n "Setting up Salt apt.sources.list and installing DPKGs. . .\r\n" | tee -a $logFile
     cd /tmp
-    wget -O - https://repo.saltstack.com/apt/debian/9/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add - | tee $logFile
-    echo "deb http://repo.saltstack.com/apt/debian/9/amd64/latest stretch main" >> /etc/apt/sources.list.d/saltstack.list | tee $logFile
+    wget -O - https://repo.saltstack.com/apt/debian/9/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add - | tee -a $logFile
+    echo "deb http://repo.saltstack.com/apt/debian/9/amd64/latest stretch main" >> /etc/apt/sources.list.d/saltstack.list | tee -a $logFile
     apt-get update
     apt-get -y install salt-minion
     numPkgs=`dpkg -l | grep salt | grep ^ii | wc -l`
@@ -58,4 +58,4 @@ sudo echo -e "+ master: $saltMaster" | tee -a /etc/salt/minion
 echo -n "Enabling salt-minion for systemctl. . .\r\n" | tee -a $logFile
 sudo systemctl enable salt-minion && sudo systemctl start salt-minion
 
-echo -n "Salt installed and configured successfully. Remenber to run salt-key on the master.\r\n" | tee -a $logFile
+echo -n "Salt installed and configured successfully. Remember to run salt-key on the master.\r\n" | tee -a $logFile
