@@ -37,6 +37,7 @@ if [ $osType = "DEB" ]; then
     wget -O - https://repo.saltstack.com/apt/debian/9/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add - | tee -a $logFile
     echo "deb http://repo.saltstack.com/apt/debian/9/amd64/latest stretch main" >> /etc/apt/sources.list.d/saltstack.list | tee -a $logFile
     apt-get update
+    apt-get install gcc-8-base -o Dpkg::Options::=--force-confnew
     apt-get -y install salt-minion
     numPkgs=`dpkg -l | grep salt | grep ^ii | wc -l`
     if [ $numPkgs -eq 2 ]; then
