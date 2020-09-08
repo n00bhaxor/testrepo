@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Make sure to set your Salt master
 saltMaster="10.0.0.7"
@@ -20,8 +20,8 @@ fi
 
 # Install RPM-based
 if [ $osType = "RPM" ]; then
-    $isInstalled = `rpm -qa | grep salt-minion 2>&1>/dev/null`
-    if [${isInstalled != 0]; then
+    `rpm -qa | grep salt-minion 2>&1>/dev/null`
+    if [[ $? -ne 0 ]]; then
         echo -n "Setting up Salt Yum repos and installing RPMs. . .\r\n" | tee -a $logFile
         yum -y install https://repo.saltstack.com/yum/redhat/salt-repo-2019.2-1.el7.noarch.rpm | tee -a $logFile
         yum -y install salt-minion | tee -a $logFile
@@ -37,8 +37,8 @@ if [ $osType = "RPM" ]; then
 fi
 
 if [ $osType = "DEB" ]; then
-    $isInstalled = `dpkg -l | grep salt-minion 2>&1>/dev/null`
-    if [ $isInstalled != 0 ]; then
+    /usr/bin/dpkg -l | grep salt-minion | grep ii 2>&1>/dev/null
+    if [[ $? -ne 0 ]]; then
         echo -n "Setting up Salt apt.sources.list and installing DPKGs. . .\r\n" | tee -a $logFile
         cd /tmp
         export DEBIAN_FRONTEND=noninteractive
