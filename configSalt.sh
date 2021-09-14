@@ -23,7 +23,7 @@ if [ $osType = "RPM" ]; then
     `rpm -qa | grep salt-minion 2>&1>/dev/null`
     if [[ $? -ne 0 ]]; then
         echo -n "Setting up Salt Yum repos and installing RPMs. . .\r\n" | tee -a $logFile
-        yum -y install https://repo.saltstack.com/yum/redhat/salt-repo-2019.2-1.el7.noarch.rpm | tee -a $logFile
+        yum -y install https://repo.saltstack.com/yum/redhat/salt-repo-latest.el7.noarch.rpm | tee -a $logFile
         yum -y install salt-minion | tee -a $logFile
         numPkgs=`rpm -qa | grep salt | grep -v mail | wc -l`
         if [ $numPkgs -eq 3 ]; then
