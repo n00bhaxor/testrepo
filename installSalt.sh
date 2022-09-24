@@ -38,7 +38,7 @@ if [ $osType = "DEB" ]; then
     sudo curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/debian/11/amd64/3005/salt-archive-keyring.gpg
     #wget -O - https://repo.saltstack.com/apt/debian/9/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add - | tee -a $logFile
     #echo "deb http://repo.saltstack.com/apt/debian/9/amd64/latest stretch main" >> /etc/apt/sources.list.d/saltstack.list | tee -a $logFile
-    sudo echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=amd64] https://repo.saltproject.io/py3/debian/11/amd64/3004 bullseye main" | sudo tee /etc/apt/sources.list.d/salt.list
+    sudo echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=amd64] https://repo.saltproject.io/py3/debian/11/amd64/3005 bullseye main" | sudo tee /etc/apt/sources.list.d/salt.list
     sudo apt-get update
     #apt-get -y install gcc-8-base -o Dpkg::Options::=--force-confnew
     sudo apt-get -y install salt-minion
