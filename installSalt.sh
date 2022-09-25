@@ -21,7 +21,9 @@ fi
 # Install RPM-based
 if [ $osType = "RPM" ]; then
     echo -n "Setting up Salt Yum repos and installing RPMs. . .\r\n" | tee -a $logFile
-    yum -y install https://repo.saltstack.com/yum/redhat/salt-repo-2019.2-1.el7.noarch.rpm | tee -a $logFile
+    #yum -y install https://repo.saltstack.com/yum/redhat/salt-repo-2019.2-1.el7.noarch.rpm | tee -a $logFile
+    sudo rpm --import https://repo.saltproject.io/py3/redhat/8/x86_64/3004/SALTSTACK-GPG-KEY.pub
+    curl -fsSL https://repo.saltproject.io/py3/redhat/8/x86_64/3004.repo | sudo tee /etc/yum.repos.d/salt.rep
     yum -y install salt-minion | tee -a $logFile
     numPkgs=`rpm -qa | grep salt | grep -v mail | wc -l`
     if [ $numPkgs -eq 3 ]; then
