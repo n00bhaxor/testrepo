@@ -37,6 +37,7 @@ if [ $osType = "DEB" ]; then
     echo -n "Setting up Salt apt.sources.list and installing DPKGs. . .\r\n" | tee -a $logFile
     cd /tmp
     export DEBIAN_FRONTEND=noninteractive
+    sudo apt -y install curl
     sudo curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/debian/11/amd64/3005/salt-archive-keyring.gpg
     #wget -O - https://repo.saltstack.com/apt/debian/9/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add - | tee -a $logFile
     #echo "deb http://repo.saltstack.com/apt/debian/9/amd64/latest stretch main" >> /etc/apt/sources.list.d/saltstack.list | tee -a $logFile
