@@ -23,7 +23,7 @@ if [ $osType = "RPM" ]; then
     echo -n "Setting up Salt Yum repos and installing RPMs. . .\r\n" | tee -a $logFile
     #yum -y install https://repo.saltstack.com/yum/redhat/salt-repo-2019.2-1.el7.noarch.rpm | tee -a $logFile
     sudo rpm --import https://repo.saltproject.io/py3/redhat/7/x86_64/3005/SALTSTACK-GPG-KEY.pubb
-    curl -fsSL https://repo.saltproject.io/py3/redhat/7/x86_64/3005.repo | sudo tee /etc/yum.repos.d/salt.rep
+    curl -fsSL https://repo.saltproject.io/py3/redhat/7/x86_64/3005.repo | sudo tee /etc/yum.repos.d/salt.repo
     yum -y install salt-minion | tee -a $logFile
     numPkgs=`rpm -qa | grep salt | grep -v mail | wc -l`
     if [ $numPkgs -eq 3 ]; then
